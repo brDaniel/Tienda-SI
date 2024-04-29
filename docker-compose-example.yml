@@ -1,0 +1,25 @@
+services:
+    tienda-app:
+        container_name: tienda-app
+        build:
+            context: ./docker/
+            dockerfile: Dockerfile
+        ports:
+            - 8000:80
+        volumes:
+            - ./src:/var/www/html
+        depends_on:
+            - tiendadb
+
+    tiendadb:
+        container_name: tiendadb
+        image: mcr.microsoft.com/mssql/server
+        ports:
+            - 1433:1433
+        environment:
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=Passw0rd!
+        volumes:
+            - <PATH>:/var/opt/mssql/data 
+            - <PATH>:/var/opt/mssql/log 
+            - <PATH>:/var/opt/mssql/secrets
