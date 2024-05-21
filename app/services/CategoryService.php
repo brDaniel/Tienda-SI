@@ -96,7 +96,7 @@ class CategoryService
             $updatedCategory = \sqlsrv_query($conn,$query,$data);
             if($updatedCategory){
                 $message= ["message"=>"Categoria actualizada!"];
-            }else{}
+            }else{
                 die(print_r(\sqlsrv_errors(),true));
             }
 
